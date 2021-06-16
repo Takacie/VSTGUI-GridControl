@@ -1,6 +1,7 @@
 # VSTGUI GridControl
 
 VST開発におけるVSTGUIを使ったGUI作成で使える画像のような感じのコントロールを追加できるヘッダファイルです。
+DAWのプロジェクト時間に合わせて、指定したパラメーターの値を変動させることができます。
 VSTSDKバージョン3.7、VSTGUIバージョン4.10で作成しました。
 
 ![Screenshot](https://github.com/Takacie/VSTGUI-GridControl/blob/main/images/screenshot.png "screenshot")
