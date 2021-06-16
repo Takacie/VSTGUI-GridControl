@@ -7,7 +7,7 @@ VSTSDKバージョン3.7、VSTGUIバージョン4.10で作成しました。
 
 # 使い方
 
-以下の使い方は、VST3ProjectGeneratorで作成したプロジェクトであること、VSTGUIを表示させるためのクラス、つまり、Steinberg::Vst::VSTGUIEditorクラス、VSTGUI::IControlListenerクラスを継承したクラスが準備されていることを前提としています。（コード内の...は省略）
+以下の使い方は、VST3ProjectGeneratorで作成したプロジェクトであること、VSTGUIを表示させるためのクラス、つまり、Steinberg::Vst::VSTGUIEditorクラス、VSTGUI::IControlListenerクラスを継承したGUIEditorクラスが準備されていることを前提としています。（コード内の...は省略）
 
 ## Processorクラスでの準備
 
