@@ -10,7 +10,7 @@ VSTSDKバージョン3.7、VSTGUIバージョン4.10で作成しました。
 ## Processorクラスでの準備
 * 当ファイルをインクルードする。
 * ProcessorクラスにSteinberg::ITimerCallbackクラスを継承させ、純粋仮想関数のonTimer()をオーバーライドする。
-```
+```c++
 class XXXProcessor : public Steinberg::Vst::AudioEffect, public Steinberg::ITimerCallback
 {
 public:
