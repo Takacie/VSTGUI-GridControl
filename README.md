@@ -5,6 +5,10 @@ VSTSDKバージョン3.7、VSTGUIバージョン4.10で作成しました。
 
 ![Screenshot](https://github.com/Takacie/VSTGUI-GridControl/blob/main/images/screenshot.png "screenshot")
 
+# ライセンス
+
+このソースコードはMITライセンスに準拠しています。コピー、配布、変更の追加、変更を加えたものの有料販売、再配布、商用利用など、自由にお使ください。
+
 # 使い方
 
 以下の使い方は、VST3ProjectGeneratorで作成したプロジェクトであること、VSTGUIを表示させるためのクラス、つまり、Steinberg::Vst::VSTGUIEditorクラス、VSTGUI::IControlListenerクラスを継承したGUIEditorクラスが準備されていることを前提としています。（コード内の...は省略）
