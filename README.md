@@ -188,7 +188,7 @@ bool PLUGIN_API XXXGUIEditor::open(void* parent, const PlatformType& platformTyp
 ...
   // 第2引数はコントロールのサイズ、第3引数はcontrollerクラスの準備で作ったGridControlControllerクラスのゲッターで
   // GridControlControllerクラスのポインタを指定する
-  grid_control = new GridControl(this, CRect(100, 100, 500, 400), dynamic_cast<EffectTestController*>(controller)->getGridControllerPtr());
+  grid_control = new GridControl(this, CRect(100, 100, 500, 400), dynamic_cast<XXXController*>(controller)->getGridControllerPtr());
   grid_control->addControlsToFrame(frame);
 ...
 }
