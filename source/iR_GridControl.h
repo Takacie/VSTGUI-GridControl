@@ -105,11 +105,11 @@ public:
   // use in processor thread onTimer()
   static void sendHostInfoMessage(Vst::AudioEffect* processor, Vst::TQuarterNotes project_time_music);
   // use in controller thread notify()
-  static tresult notifyHostInfoMessage(GridControlController* grid_control, Vst::IMessage* message);
+  tresult notifyHostInfoMessage(Vst::IMessage* message);
   // use in controller thread setState()
-  static tresult setControlState(GridControlController* grid_control, IBStreamer streamer);
+  tresult setControlState(IBStreamer streamer);
   // use in controller thread getState()
-  static void getControlState(GridControlController* grid_control, IBStreamer streamer);
+  void getControlState(IBStreamer streamer);
 
 private:
   int bar_num = INITIAL_NUM_GRID_BAR;
@@ -154,28 +154,26 @@ inline void GridControlController::sendHostInfoMessage(Vst::AudioEffect* process
   GridControlMsg->release();
 }
 
-inline tresult GridControlController::notifyHostInfoMessage(GridControlController* grid_control, Vst::IMessage* message)
+inline tresult GridControlController::notifyHostInfoMessage(Vst::IMessage* message)
 {
-  if (grid_control && message) {
+  if (message) {
     if (!strcmp(message->getMessageID(), u8"GridControlMsg")) {
       const void* data;
       uint32 size;
       message->getAttributes()->getBinary(u8"project_time_music", data, size);
-      if (grid_control) {
-        grid_control->setProjectTimeMusic((Vst::TQuarterNotes*)data);
-      }
+      setProjectTimeMusic((Vst::TQuarterNotes*)data);
       return kResultOk;
     }
   }
 }
 
-inline tresult GridControlController::setControlState(GridControlController* gc_control, IBStreamer streamer)
+inline tresult GridControlController::setControlState(IBStreamer streamer)
 {
   tresult result = kResultOk;
 
   int16 bar_num;
   if (!streamer.readInt16(bar_num)) result = kResultFalse;
-  gc_control->setBarNum(bar_num);
+  setBarNum(bar_num);
 
   BarVector vector;
   for (int i = 0; i < bar_num; i++) {
@@ -183,15 +181,15 @@ inline tresult GridControlController::setControlState(GridControlController* gc_
     if (!streamer.readFloat(value)) result = kResultFalse;
     vector.push_back(value);
   }
-  *gc_control->bar_vector.get() = std::move(vector);
+  *bar_vector.get() = std::move(vector);
   return result;
 }
 
-inline void GridControlController::getControlState(GridControlController* gc_control, IBStreamer streamer)
+inline void GridControlController::getControlState(IBStreamer streamer)
 {
-  streamer.writeInt16(static_cast<int16>(gc_control->getBarNum()));
-  for (int i = 0; i < gc_control->getBarNum(); i++) {
-    streamer.writeFloat(gc_control->bar_vector.get()->at(i));
+  streamer.writeInt16(static_cast<int16>(getBarNum()));
+  for (int i = 0; i < getBarNum(); i++) {
+    streamer.writeFloat(bar_vector.get()->at(i));
   }
 }
 
@@ -202,7 +200,7 @@ class GridControl : public CControl
 {
 public:
   // constructor
-  GridControl(IControlListener* editor, const CRect size, int tag, float min_value, float max_value, GridControlController* gc_controller);
+  GridControl(IControlListener* editor, const CRect size, GridControlController* gc_controller);
 
   // destructor
   ~GridControl();
@@ -255,8 +253,8 @@ private:
   static void halfSplit(GridControl* gc);
 };
 
-inline GridControl::GridControl(IControlListener* editor, const CRect size, int tag, float min_value, float max_value, GridControlController* gc_controller) :
-  CControl(size, editor, tag),
+inline GridControl::GridControl(IControlListener* editor, const CRect size, GridControlController* gc_controller) :
+  CControl(size, editor, -1),
   gc_controller(gc_controller),
   bar_control_rect(size.left + 20, size.top + 20, size.right, size.bottom),
   control_grid_x(new CViewContainer(CRect(size.left + 20, size.top, size.right, size.top + 20))),
