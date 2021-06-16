@@ -183,7 +183,7 @@ private:
 * open()内でGridControlクラスをインスタンス化し、フレームに追加する(コントロールが複数含まれているので、専用の関数を使うこと)
 
 ```c++
-bool PLUGIN_API XXXGUIEditor::open(void* parent, const PlatformType& platformType)
+bool PLUGIN_API XXXGUIEditor::open(void* parent, const VSTGUI::PlatformType& platformType)
 {
 ...
   // 第2引数はコントロールのサイズ、第3引数はcontrollerクラスの準備で作ったGridControlControllerクラスのゲッターで
