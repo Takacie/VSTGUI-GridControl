@@ -275,14 +275,6 @@ inline GridControl::GridControl(IControlListener* editor, const CRect size, Grid
   setTextButtonDetail();
 }
 
-inline GridControl::~GridControl() {
-  for (GridControlButton<GridControl>* button : text_buttons) {
-    button->forget();
-  }
-  control_grid_x->forget();
-  control_grid_y->forget();
-}
-
 inline void GridControl::draw(CDrawContext* pContext)
 {
   drawBackground(pContext, CColor(30, 30, 30));
