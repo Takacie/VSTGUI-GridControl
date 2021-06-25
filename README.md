@@ -95,7 +95,7 @@ public:
   GridControlController* getGridControllerPtr() { return gc_controller; }
 ...
 private:
-  GridControlController* gc_controller{ nullptr };
+  GridControlController* gc_controller = nullptr;
 ...
 };
 ```
@@ -105,7 +105,8 @@ private:
 ```c++
 tresult PLUGIN_API XXXController::initialize(FUnknown* context)
 {
-  gc_controller = new GridControlController(this, kParamID); // 第2引数はこのコントローラーで操作したいパラメーターのタグ
+  // 第2引数はこのコントローラーで操作したいパラメーターのタグ
+  gc_controller = new GridControlController(this, kParamID);
   timer = Steinberg::Timer::create(this, 5);
   // 双方ともデストラクタで解放するのを忘れずに
 ...
@@ -117,7 +118,10 @@ tresult PLUGIN_API XXXController::initialize(FUnknown* context)
 ```c++
 tresult XXXController::notify(Steinberg::Vst::IMessage* message)
 {
-  gc_controller->notifyHostInfoMessage(message);
+  if (message) {
+    gc_controller->notifyHostInfoMessage(message);
+    return kMessageNotified;
+  }
 ...
 }
 ```
