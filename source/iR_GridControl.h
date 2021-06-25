@@ -203,7 +203,7 @@ public:
   GridControl(IControlListener* editor, const CRect size, GridControlController* gc_controller);
 
   // destructor
-  ~GridControl();
+  ~GridControl() = default;
 
   // override mothod
   void draw(CDrawContext* pContext) override;
