@@ -421,17 +421,7 @@ inline void GridControl::drawBar(CDrawContext* pContext)
 inline void GridControl::fixVectorSize()
 {
   const int bar_num = gc_controller->getBarNum();
-  const int vector_size = gc_controller->getVectorSize();
-  if (vector_size > bar_num) {
-    for (int i = 0; i < vector_size - bar_num; i++) {
-      gc_controller->getBarVectorPtr().get()->pop_back();
-    }
-  }
-  else if (vector_size < bar_num) {
-    for (int i = 0; i < bar_num - vector_size; i++) {
-      gc_controller->getBarVectorPtr().get()->push_back(0.5f);
-    }
-  }
+  gc_controller->getBarVectorPtr().get()->resize(bar_num, 0.5f);
 }
 
 inline void GridControl::doubleBarNum(GridControl* gc)
