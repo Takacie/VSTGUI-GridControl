@@ -57,7 +57,7 @@ if (data.processContext && data.processContext->state & data.processContext->kPr
 ```c++
 tresult PLUGIN_API XXXProcessor::setupProcessing(Vst::ProcessSetup& newSetup)
 {
-  if (!timer) timer = Steinberg::Timer::create(this, 5); // デストラクタでリリースするのを忘れずに
+  timer = Steinberg::Timer::create(this, 5); // デストラクタでリリースするのを忘れずに
 ...
 }
 ```
