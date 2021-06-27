@@ -145,7 +145,9 @@ void XXXController::valueChanged(CControl* pControl)
   Vst::ParamID index = pControl->getTag();
   Vst::ParamValue value = pControl->getValueNormalized();
   setParamNormalized(index, value);
+  beginEdit(index);
   performEdit(index, value);
+  endEdit(index);
 }
 ```
 
