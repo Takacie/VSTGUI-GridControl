@@ -2,6 +2,8 @@
 
 VST開発におけるVSTGUIを使ったGUI作成で使える画像のような感じのコントロールを追加できるヘッダファイルです。
 DAWのプロジェクト時間に合わせて、指定したパラメーターの値を変動させることができます。
+ただし、ホストのオーディオファイル書き出しの際にパラメータが変動してくれない、などの欠陥があるためまだ実用段階ではないです。
+（自分では原因がさっぱりなので有識者の方からのお力添えを頂きたいところではあります。）
 VSTSDKバージョン3.7、VSTGUIバージョン4.10で作成しました。
 
 ![Screenshot](https://github.com/Takacie/VSTGUI-GridControl/blob/main/images/screenshot.png "screenshot")
